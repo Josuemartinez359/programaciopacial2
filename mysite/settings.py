@@ -118,12 +118,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 ALLOWED_HOSTS = [
-    "programaciopacial2.onrender.com"
+    "programaciopacial2.onrender.com",
     "programaciopacial3-6.onrender.com",
-    "onrender.internal",
+    "programaciopacial2-1.onrender.com",
     "localhost",
     "127.0.0.1",
+    "onrender.internal",
 ]
+
 
 
 
