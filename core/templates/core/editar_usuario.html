@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+
+    <style>
+        :root{
+            --bg-top: #9b5ce6;
+            --bg-bottom: #4b1c7a;
+            --card-border: rgba(255,255,255,0.12);
+            --input-bg: rgba(255,255,255,0.08);
+            --white: #ffffff;
+        }
+
+        *{margin:0;padding:0;box-sizing:border-box}
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-family: "Inter", sans-serif;
+            color:white;
+
+            background:
+                radial-gradient(circle at 10% 20%, rgba(255,255,255,0.9) 0 1px, transparent 1px),
+                radial-gradient(circle at 80% 10%, rgba(255,255,255,0.75) 0 1px, transparent 1px),
+                radial-gradient(circle at 40% 30%, rgba(255,255,255,0.6) 0 1px, transparent 1px),
+                radial-gradient(circle at 70% 60%, rgba(255,255,255,0.45) 0 1px, transparent 1px),
+                linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+        }
+
+        .container{
+            width: 420px;
+            padding: 35px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px) saturate(130%);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+        }
+
+        h2{
+            text-align:center;
+            font-size:30px;
+            margin-bottom:25px;
+            font-weight:700;
+        }
+
+        .form-group{
+            margin-bottom:18px;
+            display:flex;
+            flex-direction:column;
+        }
+
+        .form-group label{
+            margin-bottom:6px;
+            font-size:14px;
+            opacity:0.9;
+        }
+
+        .form-group input{
+            padding:12px 14px;
+            border-radius:25px;
+            border:1px solid rgba(255,255,255,0.2);
+            background: var(--input-bg);
+            color:white;
+            outline:none;
+            font-size:15px;
+        }
+
+        .btn{
+            width:100%;
+            padding:12px;
+            border-radius:30px;
+            border:none;
+            cursor:pointer;
+            font-weight:600;
+            font-size:16px;
+            transition:0.2s;
+            margin-top:8px;
+        }
+
+        .btn-save{
+            background:white;
+            color:#2b0d4a;
+        }
+        .btn-save:hover{
+            transform:translateY(-2px);
+            box-shadow:0 8px 20px rgba(255,255,255,0.3);
+        }
+
+        .btn-cancel{
+            background:rgba(255,255,255,0.2);
+            color:white;
+            border:1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-cancel:hover{
+            background:rgba(255,255,255,0.35);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    
+    <h2>Editar Usuario</h2>
+
+    <form action="{% url 'actualizar_usuario' usuario.id %}" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Identificación:</label>
+            <input type="number" name="identificacion" value="{{ usuario.profile.identificacion }}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Apodo:</label>
+            <input type="text" name="apodo" value="{{ usuario.profile.apodo }}">
+        </div>
+
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" name="email" value="{{ usuario.email }}">
+        </div>
+
+        <div class="form-group">
+            <label>Nombre:</label>
+            <input type="text" name="nombre" value="{{ usuario.first_name }}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Apellido:</label>
+            <input type="text" name="apellido" value="{{ usuario.last_name }}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Clave (opcional):</label>
+            <input type="password" name="clave" placeholder="Nueva contraseña si deseas cambiarla">
+        </div>
+
+        <button type="submit" class="btn btn-save">Guardar Cambios</button>
+
+        <a href="{% url 'listar_usuarios' %}">
+            <button type="button" class="btn btn-cancel">Cancelar</button>
+        </a>
+    </form>
+
+</div>
+
+</body>
+</html>
