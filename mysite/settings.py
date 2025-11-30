@@ -32,12 +32,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-local-dev-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-# Read ALLOWED_HOSTS from env (comma-separated) or default to local/dev hosts
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver').split(',')
-
-
-# Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -122,6 +116,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+ALLOWED_HOSTS = [
+    "programaciopacial2.onrender.com"
+    "programaciopacial3-6.onrender.com",
+    "onrender.internal",
+    "localhost",
+    "127.0.0.1",
+]
+
 
 
 # Internationalization
